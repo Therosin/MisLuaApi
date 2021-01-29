@@ -94,7 +94,7 @@ function System.GetEntitiesByClass(class) end
 
 ---* Execute a console command
 ---@param command string `command to execute`
-function Script.ExecuteCommand(command) end
+function System.ExecuteCommand(command) end
 
 --
 -- ─── SCRIPT ─────────────────────────────────────────────────────────────────────
