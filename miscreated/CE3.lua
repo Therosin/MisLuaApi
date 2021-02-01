@@ -108,7 +108,7 @@ function System.GetCVar(key) end
 ---* Sets the Value of a Cvar
 ---@param key string `cvar key to set`
 ---@param value string|number `value to set`
-function System.GetCVar(key,value) end
+function System.SetCVar(key,value) end
 --
 -- ─── SCRIPT ─────────────────────────────────────────────────────────────────────
 --
