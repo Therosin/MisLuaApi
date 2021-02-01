@@ -96,6 +96,19 @@ function System.GetEntitiesByClass(class) end
 ---@param command string `command to execute`
 function System.ExecuteCommand(command) end
 
+---* Checks if Running in Editor
+---@return boolean `true if running in editor else false`
+function System.IsEditor() end
+
+---* Gets the Value of a Cvar
+---@param key string `cvar key to get`
+---@return nil|number|string
+function System.GetCVar(key) end
+
+---* Sets the Value of a Cvar
+---@param key string `cvar key to set`
+---@param value string|number `value to set`
+function System.GetCVar(key,value) end
 --
 -- ─── SCRIPT ─────────────────────────────────────────────────────────────────────
 --
