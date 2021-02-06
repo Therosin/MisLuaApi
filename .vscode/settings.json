@@ -1,4 +1,8 @@
 {
+    "Lua.runtime.version": "Lua 5.1",
+    "Lua.workspace.library": {
+        "../.lua.compleations.d": true
+    },
     "Lua.diagnostics.disable": [
         "lowercase-global",
         "unused-local",
