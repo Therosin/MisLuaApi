@@ -109,6 +109,15 @@ function System.GetCVar(key) end
 ---@param key string `cvar key to set`
 ---@param value string|number `value to set`
 function System.SetCVar(key,value) end
+
+---Register a Console Commmand
+-- sCommand should be the string name of a function to call passing assigned parameters,eg
+-- myCommand(%1,%2)
+---@param sCCommandName string `C command name.`
+---@param sCommand string `Command string`
+---@param sHelp string `Help for the command usage.`
+function System.AddCCommand( sCCommandName, sCommand, sHelp) end
+
 --
 -- ─── SCRIPT ─────────────────────────────────────────────────────────────────────
 --
