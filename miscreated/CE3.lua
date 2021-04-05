@@ -1,13 +1,5 @@
 ---@class Global
----@field g_localActorId entityId 
----@field g_localActor entity `only on client`
 local G = _G
-
---- local playerId - only on client
-G.g_localActorId = nil
-
---- local Player - only on client
-G.g_localActor = setmetatable(player,{__index = Player})
 
 --
 -- ─── COMMON TYPES ───────────────────────────────────────────────────────────────
@@ -35,6 +27,12 @@ local vector = {x = nil, y = nil}
 ---@field z Z_AXIS
 local vector3 = {x = nil, y = nil, z = nil}
 
+--- local playerId - only on client
+G.g_localActorId = nil ---@type entityId
+
+--- local Player - only on client
+G.g_localActor = setmetatable(player, {__index = Player}) ---@type entity
+
 --
 -- ─── CRYACTION ──────────────────────────────────────────────────────────────────
 --
@@ -57,16 +55,7 @@ function CryAction.IsDedicatedServer() end
 --- CE3 System Interface
 ---| Essential CE Methods eg Entities,CVars
 ---@class System
-local System
-
----* Fetch All Entities
----@return table
-function System.GetEntities() end
-
----* Fetch All Entities of a Specified Class
----@param class string
----@return table
-function System.GetEntitiesByClass(class) end
+local System = System
 
 ---* Fetch an Entity using its entityId
 ---@param entityId userdata
@@ -108,7 +97,13 @@ function System.GetCVar(key) end
 ---* Sets the Value of a Cvar
 ---@param key string `cvar key to set`
 ---@param value string|number `value to set`
-function System.SetCVar(key,value) end
+function System.SetCVar(key, value) end
+
+---* Spawn an Entity
+--- spawnParams is a table defining at least
+---{ class = "applefresh", pos = { x = 123, y=123, z=123 } }
+---@param spawnParams table
+function System.SpawnEntity(spawnParams) end
 
 ---Register a Console Commmand
 -- sCommand should be the string name of a function to call passing assigned parameters,eg
@@ -116,14 +111,14 @@ function System.SetCVar(key,value) end
 ---@param sCCommandName string `C command name.`
 ---@param sCommand string `Command string`
 ---@param sHelp string `Help for the command usage.`
-function System.AddCCommand( sCCommandName, sCommand, sHelp) end
+function System.AddCCommand(sCCommandName, sCommand, sHelp) end
 
 --
 -- ─── SCRIPT ─────────────────────────────────────────────────────────────────────
 --
 --- CE3 Script Interface
 ---@class Script
-local Script
+local Script = Script
 ---* Reload a Script Folder
 ---@param path string
 function Script.LoadScriptFolder(path) end
@@ -133,14 +128,15 @@ function Script.LoadScriptFolder(path) end
 function Script.ReloadScript(path) end
 
 ---* call a function after specified timer
----@param milli number miliseconds, timer
----@param f function function, to run
+---@param  milli    number      miliseconds, timer
+---@param  f        function    function, to run
 ---@return userdata timerId
 function Script.SetTimer(milli, f, ...) end
 
 ---* call a function after specified timer
----@param milli number miliseconds, timer
----@param f function function, to run
+---@param  milli    number      miliseconds, timer
+---@param  f        function    function, to run
+---@vararg any                  any further params
 ---@return userdata timerId
 function Script.SetTimerForFunction(milli, f, ...) end
 
@@ -153,7 +149,7 @@ function Script.KillTimer(timerId) end
 local GameRules
 
 ---* Send a Message to a Player.
----| msgtype can be either 0 or 4 
+---| msgtype can be either 0 or 4
 ---@param msgtype number
 ---@param playerId entityId
 ---@param message string
@@ -163,8 +159,8 @@ function GameRules:SendTextMessage(msgtype, playerId, message) end
 --
 -- ────────────────────────────────────────────────────────────────── EXPORTS ─────
 --
-_G["_G"] = G
-_G["CryAction"] = CryAction
-_G["System"] = System
-_G["Script"] = Script
-_G["g_gameRules"] = {game = GameRules}
+_G['_G'] = G
+_G['CryAction'] = CryAction
+_G['System'] = System
+_G['Script'] = Script
+_G['g_gameRules'] = {game = GameRules}

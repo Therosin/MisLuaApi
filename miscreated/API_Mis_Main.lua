@@ -1,7 +1,8 @@
 ---@alias ChatCommand fun(playerId:entityId,command:string)
 ---@alias ChatCommands table<string,ChatCommand>
+
 --- All Registered ChatCommands
-local ChatCommands = {}
+local ChatCommands = {} ---@type ChatCommands
 
 ---* Global Callback
 ---| EI: At this point all of the common scripts/systems should be loaded

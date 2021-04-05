@@ -13,7 +13,5 @@ then update your "Workspace" config in vscode - this example assumes your lua so
 
 ```
 "Lua.runtime.version": "Lua 5.1",
-  "Lua.workspace.library": {
-    "../.lua.compleations.d": true
-},
+"Lua.workspace.library": ["../.lua.compleations.d"],
 ```

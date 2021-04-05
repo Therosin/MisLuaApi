@@ -1,6 +1,6 @@
 --- ItemSpawnerManager
 ---@class ISM
-local ISM = {}
+local ISM
 
 ---* Give an item to a Player
 ---@param playerId entityId     `player to give item to`

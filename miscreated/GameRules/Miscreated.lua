@@ -97,28 +97,25 @@ end
 
 -- See BattleRoyale.lua for a more complete example of the following 3 methods
 
---[[
+
 -- Initialize the player
 -- Use this to initialize the player before the server respawns the player
 -- Any change to the player's position and rotation would have to be done here
 function Miscreated:InitPlayer(playerId)
 	--Log(">> Miscreated:InitPlayer");
 end
---]]
 
---[[
 -- This is called when the character is being revived by the server
 -- Set player stats here - only default CryEngine stats are currently exposed, like health
 function Miscreated:RevivePlayer(playerId)
 	--Log(">> Miscreated:RevivePlayer");
 end
---]]
+
 
 -- If this method is defined, then Miscreated will ONLY spawn items for a new or respawned
 -- player based on the code below.
 -- This is called after the player starts the spawning process
 -- Add any custom equipment or other finalizing touches here
---[[
 function Miscreated:EquipPlayer(playerId)
 	--Log(">> Miscreated:EquipPlayer");
 	
@@ -136,4 +133,3 @@ function Miscreated:EquipPlayer(playerId)
 		local accessory = ISM.GiveItem(playerId, "STANAGx30", false, weapon.id, "stanag_mag00");
 	end
 end
---]]
