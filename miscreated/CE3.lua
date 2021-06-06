@@ -1,13 +1,39 @@
----@class Global
-local G = _G
-
 --
 -- ─── COMMON TYPES ───────────────────────────────────────────────────────────────
 --
 
 -- Entity aliases
----@alias entity table
 ---@alias entityId userdata|number
+
+-- basic entity class
+---@class CE3.entity
+---@field id entityId - entityId of the current entity
+---@field GetRawId fun(self:entity):string - Get This Entities RawId (entityId in Hex)
+---@field GetName fun(self:entity):string - Get this Entities Name
+---@field GetPos fun(self:entity):vector3 - Get this Entities Current Position
+---@field GetWorldPos fun(self:entity):vector3 - Get this Entities Current WorldPosition
+
+--- basic player class
+---@class CE3.player : CE3.entity
+---@field player CE3.playerInstance
+---@field actor table
+
+--- playerInstance wrapper class
+---@class CE3.playerInstance
+---@field GetSteam64Id fun(self:player):string `Get This Players Steam64Id`
+
+---@alias entity CE3.entity
+---@alias player CE3.player
+
+
+local Player ---@type player
+local player
+
+--- local player - only on client
+_G['g_localActor'] = setmetatable(player,{__index = Player})
+
+--- local playerId - only on client
+_G['g_localActorId'] = player.id
 
 -- Vector aliases
 ---@alias X_AXIS number|nil `X Axis`
@@ -27,12 +53,6 @@ local vector = {x = nil, y = nil}
 ---@field z Z_AXIS
 local vector3 = {x = nil, y = nil, z = nil}
 
---- local playerId - only on client
-G.g_localActorId = nil ---@type entityId
-
---- local Player - only on client
-G.g_localActor = setmetatable(player, {__index = Player}) ---@type entity
-
 --
 -- ─── CRYACTION ──────────────────────────────────────────────────────────────────
 --
@@ -49,6 +69,9 @@ function CryAction.IsClient() end
 ---@return boolean
 function CryAction.IsDedicatedServer() end
 
+---* Checks the current players list.
+---@return table<number,player>
+function CryAction.GetPlayerList() end
 --
 -- ─── SYSTEM ─────────────────────────────────────────────────────────────────────
 --
@@ -158,8 +181,6 @@ function GameRules:SendTextMessage(msgtype, playerId, message) end
 
 --
 -- ────────────────────────────────────────────────────────────────── EXPORTS ─────
---
-_G['_G'] = G
 _G['CryAction'] = CryAction
 _G['System'] = System
 _G['Script'] = Script

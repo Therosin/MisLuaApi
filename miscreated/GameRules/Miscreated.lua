@@ -9,6 +9,8 @@ Miscreated = {
 	}
 }
 
+
+---@diagnostic disable-next-line: undefined-global
 GameRulesSetStandardFuncs(Miscreated);
 
 function Miscreated.Server:OnInit()
@@ -69,7 +71,7 @@ function Miscreated:ChatCommand(playerId, command)
 	--Log(">> Miscreated:ChatCommand");
 
 	-- player is an entity
-	local player = System.GetEntity(playerId)
+	local player = System.GetEntity(playerId) ---@type player
 
 	if not player.actor then
 		Log("Miscreated:ChatCommand - playerId is not a valid player")
@@ -120,7 +122,7 @@ function Miscreated:EquipPlayer(playerId)
 	--Log(">> Miscreated:EquipPlayer");
 	
 	-- Get the entity for the player
-	local player = System.GetEntity(playerId);
+	local player = System.GetEntity(playerId); ---@type player
 
 	-- Verify the player is of type "player" - sanity check
 	if (player and player.player) then
